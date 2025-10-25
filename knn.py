@@ -44,7 +44,7 @@ class KNNClassifier:
 
     def _predict(self, new_point):
         # Compute distances between new_point and all examples in the training set
-        distances = [euclidean_distance(new_point, point) for point in self.X_train]
+        distances = np.sqrt(np.sum((self.X_train - new_point)**2, axis=1))   
         # Sort by distance and return indices of the first k neighbors
         k_indices = np.argsort(distances)[:self.k]
         # Extract the labels of the k nearest neighbor
@@ -55,10 +55,15 @@ class KNNClassifier:
 
 
 
+# Test on small subset first
+X_test_small = X_test[:100]
+y_test_small = y_test[:100]
+
+
 knn = KNNClassifier(k=5)
 knn.fit(X_train, y_train)
-predictions = knn.predict(X_test)
-accuracy = np.mean(predictions == y_test)
+predictions = knn.predict(X_test_small)
+accuracy = np.mean(predictions == y_test_small)
 print(f"\nKNN Classifier Accuracy: {accuracy * 100:.2f}%")
 
 
