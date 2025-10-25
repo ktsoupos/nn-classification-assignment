@@ -1,8 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import time
 from collections import Counter
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import fetch_openml
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
 
 
 # Load CIFAR-10
@@ -55,15 +58,38 @@ class KNNClassifier:
 
 
 
-# Test on small subset first
-X_test_small = X_test[:100]
-y_test_small = y_test[:100]
+# # Test on small subset first
+# X_test_small = X_test[:100]
+# y_test_small = y_test[:100]
 
 
-knn = KNNClassifier(k=5)
+# knn = KNNClassifier(k=5)
+# knn.fit(X_train, y_train)
+# predictions = knn.predict(X_test_small)
+# accuracy = np.mean(predictions == y_test_small)
+# print(f"\nKNN Classifier Accuracy: {accuracy * 100:.2f}%")
+
+
+
+print("\nTraining KNN (k=5, parallel)...")
+start = time.time()
+
+knn = KNeighborsClassifier(n_neighbors=5, n_jobs=-1)
 knn.fit(X_train, y_train)
-predictions = knn.predict(X_test_small)
-accuracy = np.mean(predictions == y_test_small)
-print(f"\nKNN Classifier Accuracy: {accuracy * 100:.2f}%")
+
+print(f"Training time: {time.time() - start:.2f}s")
+
+
+print("Predicting...")
+start = time.time()
+
+predictions = knn.predict(X_test)
+
+test_time = time.time() - start
+print(f"Prediction time: {test_time:.2f}s ({test_time/60:.2f} min)")
+
+
+accuracy = accuracy_score(y_test, predictions)
+print(f"\nAccuracy: {accuracy * 100:.2f}%")
 
 
