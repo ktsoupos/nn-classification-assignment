@@ -1,0 +1,51 @@
+Loading CIFAR-10...
+Dataset: 60000 samples, 3072 features
+Train: 36000, Test: 24000
+
+============================================================
+K-NEAREST NEIGHBORS (k=1)
+============================================================
+Training...
+Training time: 0.08s
+Predicting...
+Prediction time: 19.57s (0.33 min)
+Accuracy: 33.60%
+
+============================================================
+K-NEAREST NEIGHBORS (k=3)
+============================================================
+Training...
+Training time: 0.09s
+Predicting...
+Prediction time: 23.96s (0.40 min)
+Accuracy: 32.74%
+
+============================================================
+NEAREST CENTROID CLASSIFIER
+============================================================
+Training...
+Training time: 0.76s
+Predicting...
+Prediction time: 0.12s (0.00 min)
+Accuracy: 27.23%
+
+============================================================
+COMPARISON
+============================================================
+
+Classifier                Train Time (s)  Test Time (s)   Accuracy (%)   
+----------------------------------------------------------------------
+KNN (k=1)                 0.08            19.57           33.60          
+KNN (k=3)                 0.09            23.96           32.74          
+Nearest Centroid          0.76            0.12            27.23          
+
+============================================================
+SUMMARY
+============================================================
+
+Random baseline: 10.00%
+KNN (k=1): 33.60% (3.4x better than random)
+KNN (k=3): 32.74% (3.3x better than random)
+Nearest Centroid: 27.23% (2.7x better than random)
+
+Best accuracy: KNN (k=1) with 33.60%

@@ -22,7 +22,12 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 print(f"Train: {X_train.shape[0]}, Test: {X_test.shape[0]}")
 
-# Train KNN with parallel processing
+# ============================================
+# 1. K-NEAREST NEIGHBORS (KNN)
+# ============================================
+print("\n" + "="*60)
+print("K-NEAREST NEIGHBORS CLASSIFIER")
+print("="*60)
 print("\nTraining KNN (k=1)...")
 start = time.time()
 knn = KNeighborsClassifier(n_neighbors=1, n_jobs=-1)
@@ -38,10 +43,9 @@ print(f"Prediction: {test_time:.2f}s for {X_test.shape[0]} samples ")
 
 # Evaluate
 accuracy = accuracy_score(y_test, predictions)
-print(f"\n Accuracy: {accuracy * 100:.2f}%")
+print(f"Accuracy: {accuracy * 100:.2f}%")
 
-
-print("\nTraining KNN (k=5)...")
+print("\nTraining KNN (k=3)...")
 start = time.time()
 knn = KNeighborsClassifier(n_neighbors=3, n_jobs=-1)
 knn.fit(X_train, y_train)
@@ -56,4 +60,6 @@ print(f"Prediction: {test_time:.2f}s for {X_test.shape[0]} samples ")
 
 # Evaluate
 accuracy = accuracy_score(y_test, predictions)
-print(f"\n Accuracy: {accuracy * 100:.2f}%")
+print(f"Accuracy: {accuracy * 100:.2f}%")
+
+
